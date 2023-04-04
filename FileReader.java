@@ -17,6 +17,17 @@ class FileReader
         ReadFile();
     }
 
+    //Returns Number Of Lines In File
+    public int GetFileSize()
+    {
+        return size;
+    }
+    //Returns File Content In String Arrays
+    public String[] GetFileContent()
+    {
+        return contents;
+    }
+
     //Determines Number Of Lines In File
     //Could have combined ReadSize() and ReadFile() if using ArrayList, 
     //but wanted to use built in String Array instead to minimize imports
@@ -36,7 +47,6 @@ class FileReader
             e.printStackTrace();
         }
     }
-
     //Reads File And Stores Lines In Array Of Strings
     private void ReadFile()
     {
@@ -53,17 +63,5 @@ class FileReader
             e.printStackTrace();
             
         }
-    }
-
-    //Returns Number Of Lines In File
-    public int GetFileSize()
-    {
-        return size;
-    }
-
-    //Returns File Content In String Arrays
-    public String[] GetFileContent()
-    {
-        return contents;
     }
 }
