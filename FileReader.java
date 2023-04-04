@@ -1,5 +1,3 @@
-package mmFileReader;
-
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.File;
@@ -13,17 +11,17 @@ class FileReader
     public FileReader(String input)
     {
         file = new File(input);
-        ReadSize();
-        ReadFile();
+        readSize();
+        readFile();
     }
 
     //Returns Number Of Lines In File
-    public int GetFileSize()
+    public int size()
     {
         return size;
     }
     //Returns File Content In String Arrays
-    public String[] GetFileContent()
+    public String[] getContents()
     {
         return contents;
     }
@@ -31,7 +29,7 @@ class FileReader
     //Determines Number Of Lines In File
     //Could have combined ReadSize() and ReadFile() if using ArrayList, 
     //but wanted to use built in String Array instead to minimize imports
-    private void ReadSize()
+    private void readSize()
     {
         try
         {
@@ -42,13 +40,14 @@ class FileReader
                 size++;
             }
             scan.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) 
+        {
             System.out.println("Error with opening file.\nPlease check file name and try again.");
             e.printStackTrace();
         }
     }
     //Reads File And Stores Lines In Array Of Strings
-    private void ReadFile()
+    private void readFile()
     {
         contents = new String[size];
         try
@@ -59,9 +58,9 @@ class FileReader
                 contents[i] = scan.nextLine();
             }
             scan.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) 
+        {
             e.printStackTrace();
-            
         }
     }
 }
