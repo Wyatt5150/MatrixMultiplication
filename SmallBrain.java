@@ -12,7 +12,7 @@ public class SmallBrain extends MatrixMultiply
         for (int m1row = 0; m1row < m1.height(); m1row++)
         {
             String newRow = "";
-            for (int m2col = 0; m2col < m1.width(); m2col++)
+            for (int m2col = 0; m2col < m2.width(); m2col++)
             {
                 newRow += calc(m1, m2, m1row, m2col) + " ";
             }

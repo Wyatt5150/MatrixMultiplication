@@ -2,12 +2,7 @@ import java.util.*;
 
 public class FileToMatrices 
 {
-    FileReader file;
-    public FileToMatrices(FileReader f)
-    {
-        file=f;
-    }
-    public ArrayList<Matrix> getMatrices()
+    public static ArrayList<Matrix> getMatrices(FileReader file)
     {
         ArrayList<Matrix> matrices = new ArrayList<Matrix>();
         Matrix m = new Matrix();

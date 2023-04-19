@@ -1,30 +1,49 @@
 import java.util.*;
 
+import javax.print.attribute.standard.PrinterInfo;
+
 public class Main
 {
+    
     public static void main(String[] args)
     {
         RunTimer timer = new RunTimer();
-        timer.start();
+        
 
         // load files into array of matrices
-        FileToMatrices converter = new FileToMatrices(new FileReader("Matrices.txt"));
-        ArrayList<Matrix> matrices = converter.getMatrices();
-        
+        ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Matrices.txt"));
+        //printMatrices(matrices);
+        timer.start();
+        run(matrices, new SmallBrain());
+        timer.stop();
+    }
+
+    private static void run(ArrayList<Matrix> matrices, MatrixMultiply mult)
+    {
         int i = 0;
         // process matrices in sets of 2
         while(i+1 < matrices.size())
         {
-            matrices.get(i).print();
-            System.out.println();
-            matrices.get(i+1).print();
+            // run things
+            Matrix sol = mult.multiply(matrices.get(i),matrices.get(i+1));
+            
+            // print equation
+            if(sol != null)
+                printEquation(matrices.get(i), matrices.get(i+1), sol);
 
+            System.out.println();
             i+=2;
         }
-
-        timer.stop();
     }
 
+    private static void printMatrices(ArrayList<Matrix> matrices)
+    {
+        for(Matrix m: matrices)
+        {
+            m.print();
+            System.out.println();
+        }
+    }
     private static void printEquation(Matrix m1, Matrix m2, Matrix m3)
     {
         int mid = m1.height()/2;
