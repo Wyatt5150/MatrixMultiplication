@@ -1,7 +1,7 @@
 public class SmallBrain extends MatrixMultiply
 {
 
-    public static Matrix multiply(Matrix m1, Matrix m2)
+    public Matrix multiply(Matrix m1, Matrix m2)
     {
         if(!isValid(m1, m2))
         {
