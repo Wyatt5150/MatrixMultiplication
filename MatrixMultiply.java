@@ -9,8 +9,7 @@ public abstract class MatrixMultiply
         int sol = 0;
         for(int k = 0; k < m1.getWidth (); k++)
         {
-            System.out.println(m1.get(r,k) +" "+ m2.get(k,c));
-            sol += m1.get(r,k) * m2.get(k,c);
+            sol += m1.get(k,r) * m2.get(c,k);
         }
         return sol;
     }
