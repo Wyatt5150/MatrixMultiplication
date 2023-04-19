@@ -13,7 +13,6 @@ class RunTimer
     {
         endTime = System.nanoTime();
         display();
-        display();
     }
 
     private void display()
