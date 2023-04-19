@@ -27,12 +27,4 @@ public abstract class MatrixMultiply
         System.out.println("Matrix 1 Width: " + m1.width());
         System.out.println("Matrix 2 Height: " + m2.height());
     }
-
-    public static void invalidSize(Matrix m1, Matrix m2)
-    {
-        System.out.println("Invalid Matrix Sizes.");
-        System.out.println("Matrix 1 Width Must Match Matrix 2 Height.");
-        System.out.println("Matrix 1 Width: " + m1.getWidth());
-        System.out.println("Matrix 2 Height: " + m2.getHeight());
-    }
 }
