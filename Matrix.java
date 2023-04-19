@@ -9,8 +9,8 @@ public class Matrix
         matrix = new ArrayList<ArrayList<Integer>>();
     }
 
-    public int getHeight()      { return matrix.size(); }
-    public int getWidth()       { return matrix.get(0).size();}
+    public int height()      { return matrix.size(); }
+    public int width()       { return matrix.get(0).size();}
     public int get(int x,int y) { return matrix.get(y).get(x); }
     public boolean isEmpty()    { return matrix.isEmpty(); }
 
@@ -24,13 +24,13 @@ public class Matrix
             int num =line.nextInt();
             if(Math.pow(10,mostDigits) < num)
                 mostDigits = (int)Math.log10(num)+1;
-            matrix.get(getHeight()-1).add(num);
+            matrix.get(height()-1).add(num);
         }
         line.close();
     }
     public void print()
     {
-        for(int i = 0; i<getHeight();i++)
+        for(int i = 0; i<height();i++)
         {
             printRow(i);
             System.out.println();
@@ -38,11 +38,10 @@ public class Matrix
     }
     public void printRow(int r)
     {
-        if(r >= getHeight())
+        if(r >= height())
         {
             String spaces = "";
-            //System.out.println(4 + " " + getWidth() + " " + (mostDigits+1));
-            for(int k = 3+getWidth()*(mostDigits+1); k>0; k--)
+            for(int k = 3+width()*(mostDigits+1); k>0; k--)
             {
                 spaces += " ";
             }
