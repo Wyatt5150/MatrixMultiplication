@@ -1,7 +1,7 @@
 public abstract class MatrixMultiply 
 {
     // revieve 2 matrices, return product
-    abstract public static Matrix multiply(Matrix m1, Matrix m2);
+    abstract public Matrix multiply(Matrix m1, Matrix m2);
     
     // revieve 2 matrices and which row of m1 and which col of m2 is getting calculated
     public static int calc(Matrix m1, Matrix m2, int r, int c)
