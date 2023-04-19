@@ -8,20 +8,20 @@ class RunTimer
 
     }
 
-    public void startTimer()
+    public void start()
     {
         startTime = System.nanoTime();
         endTime = System.nanoTime();
     }
 
-    public void stopTimer()
+    public void stop()
     {
         endTime = System.nanoTime();
-        displayTimer();
+        display();
     }
 
-    private void displayTimer()
+    private void display()
     {
-        System.out.println((endTime - startTime) / 1000000000);
+        System.out.println((endTime - startTime) / (double)1000000000);
     }
 }
