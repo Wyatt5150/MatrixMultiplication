@@ -23,7 +23,7 @@ public class Main
 
     private static void printEquation(Matrix m1, Matrix m2, Matrix m3)
     {
-        int mid = m1.getHeight()/2;
+        int mid = m1.height()/2;
         int r =0;
         for(r = 0; r < mid; r++)
         {
@@ -33,7 +33,7 @@ public class Main
         printLine(m1,m2,m3,r," = ");
         r++;
 
-        while(r<m1.getHeight()||r<m2.getHeight())
+        while(r<m1.height()||r<m2.height())
         {
             printLine(m1,m2,m3,r,"   ");
             r++;
