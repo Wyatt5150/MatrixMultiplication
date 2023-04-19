@@ -3,11 +3,6 @@ class RunTimer
     private long startTime = 0;
     private long endTime;
 
-    public RunTimer()
-    {
-
-    }
-
     public void start()
     {
         startTime = System.nanoTime();
