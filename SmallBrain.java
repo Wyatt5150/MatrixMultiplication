@@ -1,4 +1,7 @@
-public class SmallBrain 
+public class SmallBrain extends MatrixMultiply
 {
-    
+    public Matrix multiply(Matrix m1, Matrix m2)
+    {
+        return null;
+    }
 }
