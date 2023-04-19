@@ -7,16 +7,20 @@ public class Main
         RunTimer timer = new RunTimer();
         timer.start();
 
+        // load files into array of matrices
         FileToMatrices converter = new FileToMatrices(new FileReader("Matrices.txt"));
         ArrayList<Matrix> matrices = converter.getMatrices();
-        /* 
-        for(Matrix m: matrices)
+        
+        int i = 0;
+        // process matrices in sets of 2
+        while(i+1 < matrices.size())
         {
-            m.print();
+            matrices.get(i).print();
             System.out.println();
-        }//*/ 
+            matrices.get(i+1).print();
 
-        printEquation(matrices.get(0), matrices.get(1), matrices.get(2));
+            i+=2;
+        }
 
         timer.stop();
     }
