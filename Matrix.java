@@ -7,7 +7,6 @@ public class Matrix
     public Matrix()
     {
         matrix = new ArrayList<ArrayList<Integer>>();
-        mostDigits = new ArrayList<Integer>();
     }
 
     public int height()      { return matrix.size(); }
@@ -31,7 +30,7 @@ public class Matrix
         {
             int num =line.nextInt();
 
-            if(Math.pow(10,mostDigits.get(col)) <= num)
+            if(numOfDig(num) > mostDigits.get(col))
                 mostDigits.set(col,numOfDig(num));
 
             matrix.get(height()-1).add(num);
@@ -77,6 +76,8 @@ public class Matrix
 
     private void addFirstRow(String row)
     {
+        mostDigits = new ArrayList<Integer>();
+
         matrix.add(new ArrayList<Integer>());
         Scanner line = new Scanner(row);
         while(line.hasNext())

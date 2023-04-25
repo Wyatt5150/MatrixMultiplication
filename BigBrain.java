@@ -1,6 +1,19 @@
+import java.util.ArrayList;
+
 public class BigBrain extends MatrixMultiply
 {
-    public Matrix multiply(Matrix m1, Matrix m2)
+    int maxThreads;
+    ArrayList<BigBrainThread> threads;
+    ArrayList<String> newRows;
+
+    public BigBrain(int num)
+    {
+        maxThreads = num;
+        threads = new ArrayList<BigBrainThread>();
+        newRows = new ArrayList<String>();
+    }
+
+    public Matrix multiply (Matrix m1, Matrix m2) 
     {
         if(!isValid(m1, m2))
         {
@@ -9,18 +22,53 @@ public class BigBrain extends MatrixMultiply
         }
 
         Matrix retMatrix = new Matrix();
-        /*
+        
         for (int m1row = 0; m1row < m1.height(); m1row++)
         {
-            String newRow = "";
-            for (int m2col = 0; m2col < m1.width(); m2col++)
+            threads.add(new BigBrainThread(m1, m2, m1row));
+            threads.get(threads.size()-1).start();
+
+            if(m1row%maxThreads == maxThreads-1)
             {
-                newRow += calc(m1, m2, m1row, m2col) + " ";
+                for(BigBrainThread t : threads) 
+                {
+                    try
+                    {
+                        t.t.join();
+                        newRows.add(t.newRow);
+                    }
+                    catch(Exception e) {}
+                }
+                threads = new ArrayList<>();
             }
-            retMatrix.addRow(newRow);
         }
-        */
+        for(BigBrainThread t : threads) 
+        {
+            try
+            {
+                t.t.join();
+                newRows.add(t.newRow);
+            }
+            catch(Exception e) {}
+        }
+
+        for(String s: newRows)
+        {
+            retMatrix.addRow(s);
+        }
 
         return retMatrix;
+    }
+
+    private void waitForThreads()
+    {
+        for(BigBrainThread t : threads) 
+        {
+            try
+            {
+                t.t.join();
+            }
+            catch(Exception e) {}
+        }
     }
 }

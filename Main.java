@@ -1,21 +1,25 @@
 import java.util.*;
 
-import javax.print.attribute.standard.PrinterInfo;
-
 public class Main
 {
-    
     public static void main(String[] args)
     {
         RunTimer timer = new RunTimer();
         
 
         // load files into array of matrices
-        ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Matrices.txt"));
+        //ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Matrices.txt"));
+        ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Massive_Input.txt"));
         //printMatrices(matrices);
+        
+        /* 
         timer.start();
         run(matrices, new SmallBrain());
-        timer.stop();
+        timer.stop();// */
+        //* 
+        timer.start();
+        run(matrices, new BigBrain(4));
+        timer.stop();// */
     }
 
     private static void run(ArrayList<Matrix> matrices, MatrixMultiply mult)
@@ -28,8 +32,7 @@ public class Main
             Matrix sol = mult.multiply(matrices.get(i),matrices.get(i+1));
             
             // print equation
-            if(sol != null)
-                printEquation(matrices.get(i), matrices.get(i+1), sol);
+            //if(sol != null) printEquation(matrices.get(i), matrices.get(i+1), sol);
 
             System.out.println();
             i+=2;
