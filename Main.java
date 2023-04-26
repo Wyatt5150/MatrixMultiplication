@@ -5,7 +5,6 @@ public class Main
     public static void main(String[] args)
     {
         RunTimer timer = new RunTimer();
-        
 
         // load files into array of matrices
         //ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Matrices.txt"));
@@ -16,9 +15,13 @@ public class Main
         timer.start();
         run(matrices, new SmallBrain());
         timer.stop();// */
+        /* 
+        timer.start();
+        run(matrices, new BigBrain(6));
+        timer.stop();// */
         //* 
         timer.start();
-        run(matrices, new BigBrain(4));
+        run(matrices, new CircleBrain(6));
         timer.stop();// */
     }
 

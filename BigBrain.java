@@ -35,7 +35,7 @@ public class BigBrain extends MatrixMultiply
                     try
                     {
                         t.t.join();
-                        newRows.add(t.newRow);
+                        retMatrix.addRow(t.newRow);
                     }
                     catch(Exception e) {}
                 }
@@ -47,28 +47,11 @@ public class BigBrain extends MatrixMultiply
             try
             {
                 t.t.join();
-                newRows.add(t.newRow);
+                retMatrix.addRow(t.newRow);
             }
             catch(Exception e) {}
-        }
-
-        for(String s: newRows)
-        {
-            retMatrix.addRow(s);
         }
 
         return retMatrix;
-    }
-
-    private void waitForThreads()
-    {
-        for(BigBrainThread t : threads) 
-        {
-            try
-            {
-                t.t.join();
-            }
-            catch(Exception e) {}
-        }
     }
 }
