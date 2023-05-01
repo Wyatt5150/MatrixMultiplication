@@ -1,4 +1,4 @@
-public class WrinkleBrainThread implements Runnable
+public class CellMultiplyThread implements Runnable
 {
     public Thread t;
 
@@ -10,7 +10,7 @@ public class WrinkleBrainThread implements Runnable
     private int interval;
     private int max;
 
-    public WrinkleBrainThread(Matrix m1, Matrix m2, Matrix res, int index, int interval)
+    public CellMultiplyThread(Matrix m1, Matrix m2, Matrix res, int index, int interval)
     {
         this.m1 = m1;
         this.m2 = m2;

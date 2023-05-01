@@ -1,4 +1,4 @@
-public class BigBrainThread implements Runnable
+public class RowMultiplyThread implements Runnable
 {
     public Thread t;
 
@@ -8,7 +8,7 @@ public class BigBrainThread implements Runnable
 
     private int m1row;
     private int interval;
-    public BigBrainThread(Matrix m1, Matrix m2, Matrix res, int r, int i)
+    public RowMultiplyThread(Matrix m1, Matrix m2, Matrix res, int r, int i)
     {
         this.m1 = m1;
         this.m2 = m2;

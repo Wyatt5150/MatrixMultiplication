@@ -7,22 +7,26 @@ public class Main
         RunTimer timer = new RunTimer();
 
         // load files into array of matrices
-        //ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Matrices.txt"));
-        ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Massive_Input.txt"));
+        ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Matrices.txt"));
+        //ArrayList<Matrix> matrices = FileToMatrices.getMatrices(new FileReader("Massive_Input.txt"));
         //printMatrices(matrices);
         
-        /* 
+        //* 
         timer.start();
-        run(matrices, new SmallBrain());
+        run(matrices, new BasicMultiply());
         timer.stop();// */
-        /* 
+        //*  
         timer.start();
-        run(matrices, new BigBrain(6));
+        run(matrices, new RowMultiply(12));
         timer.stop();// */
         //* 
         timer.start();
-        run(matrices, new CircleBrain(6));
+        run(matrices, new CellMultiply(12));
         timer.stop();// */
+         //* 
+         timer.start();
+         run(matrices, new BadCellMultiply(12));
+         timer.stop();// */
     }
 
     private static void run(ArrayList<Matrix> matrices, MatrixMultiply mult)
@@ -35,7 +39,7 @@ public class Main
             Matrix sol = mult.multiply(matrices.get(i),matrices.get(i+1));
             
             // print equation
-            //if(sol != null) printEquation(matrices.get(i), matrices.get(i+1), sol);
+            if(sol != null) printEquation(matrices.get(i), matrices.get(i+1), sol);
 
             System.out.println();
             i+=2;

@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 
-public class BigBrain extends MatrixMultiply
+public class RowMultiply extends MatrixMultiply
 {
     int maxThreads;
-    ArrayList<BigBrainThread> threads;
+    ArrayList<RowMultiplyThread> threads;
     ArrayList<String> newRows;
 
-    public BigBrain(int num)
+    public RowMultiply(int num)
     {
         maxThreads = num;
-        threads = new ArrayList<BigBrainThread>();
+        threads = new ArrayList<RowMultiplyThread>();
         newRows = new ArrayList<String>();
     }
 
@@ -24,11 +24,11 @@ public class BigBrain extends MatrixMultiply
         Matrix retMatrix = new Matrix(m1.height(), m2.width());
         for (int m1row = 0; m1row < maxThreads && m1row < m1.height(); m1row++)
         {
-            threads.add(new BigBrainThread(m1, m2,retMatrix, m1row, maxThreads));
+            threads.add(new RowMultiplyThread(m1, m2,retMatrix, m1row, maxThreads));
             threads.get(threads.size()-1).start();
         }
 
-        for(BigBrainThread t : threads) 
+        for(RowMultiplyThread t : threads) 
         {
             try
             {

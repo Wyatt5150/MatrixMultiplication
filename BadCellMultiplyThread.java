@@ -1,4 +1,4 @@
-public class SmoothBrainThread implements Runnable
+public class BadCellMultiplyThread implements Runnable
 {
     public Thread t;
     private Matrix m1;
@@ -6,7 +6,7 @@ public class SmoothBrainThread implements Runnable
     public int m1row;
     private int m2col;
     public int sol;
-    public SmoothBrainThread(Matrix m1, Matrix m2, int r, int c)
+    public BadCellMultiplyThread(Matrix m1, Matrix m2, int r, int c)
     {
         this.m1 = m1;
         this.m2 = m2;

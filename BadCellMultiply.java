@@ -1,13 +1,13 @@
 import java.util.ArrayList;
-public class SmoothBrain extends MatrixMultiply
+public class BadCellMultiply extends MatrixMultiply
 {
     int maxThreads;
-    ArrayList<SmoothBrainThread> threads;
+    ArrayList<BadCellMultiplyThread> threads;
     ArrayList<String> newRows;
-    public SmoothBrain(int num)
+    public BadCellMultiply(int num)
     {
         maxThreads = num;
-        threads = new ArrayList<SmoothBrainThread>();
+        threads = new ArrayList<BadCellMultiplyThread>();
         newRows = new ArrayList<String>();
     }
     public Matrix multiply (Matrix m1, Matrix m2) 
@@ -26,12 +26,12 @@ public class SmoothBrain extends MatrixMultiply
         {
             for (int m2col = 0; m2col < m2.width(); m2col++)
             {
-                threads.add(new SmoothBrainThread(m1, m2, m1row, m2col));
+                threads.add(new BadCellMultiplyThread(m1, m2, m1row, m2col));
                 threads.get(threads.size()-1).start();
 
                 if(threads.size() == maxThreads)
                 {
-                    for(SmoothBrainThread t : threads) 
+                    for(BadCellMultiplyThread t : threads) 
                     {
                         try
                         {
@@ -53,7 +53,7 @@ public class SmoothBrain extends MatrixMultiply
                 }
             }
         }
-        for(SmoothBrainThread t : threads) 
+        for(BadCellMultiplyThread t : threads) 
         {
             try
             {

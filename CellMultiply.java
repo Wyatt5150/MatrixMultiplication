@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 
-public class WrinkleBrain extends MatrixMultiply
+public class CellMultiply extends MatrixMultiply
 {
     int maxThreads;
-    ArrayList<WrinkleBrainThread> threads;
+    ArrayList<CellMultiplyThread> threads;
     ArrayList<String> newRows;
 
-    public WrinkleBrain(int num)
+    public CellMultiply(int num)
     {
         maxThreads = num;
-        threads = new ArrayList<WrinkleBrainThread>();
+        threads = new ArrayList<CellMultiplyThread>();
         newRows = new ArrayList<String>();
     }
 
@@ -24,11 +24,11 @@ public class WrinkleBrain extends MatrixMultiply
         Matrix retMatrix = new Matrix(m1.height(), m2.width());
         for(int i = 0; i<maxThreads && i<m1.height()*m2.width(); i++)
         {
-            threads.add(new WrinkleBrainThread(m1, m2, retMatrix, i, maxThreads));
+            threads.add(new CellMultiplyThread(m1, m2, retMatrix, i, maxThreads));
             threads.get(threads.size()-1).start();
         }
 
-        for(WrinkleBrainThread t : threads) 
+        for(CellMultiplyThread t : threads) 
         {
             try
             {
