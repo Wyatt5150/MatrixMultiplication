@@ -21,60 +21,21 @@ public class CircleBrain extends MatrixMultiply
             return null;
         }
 
-        Matrix retMatrix = new Matrix();
-        String s ="";
-        int row = 0;
-        
-        for (int m1row = 0; m1row < m1.height(); m1row++)
+        Matrix retMatrix = new Matrix(m1.height(), m2.width());
+        for(int i = 0; i<maxThreads && i<m1.height()*m2.width(); i++)
         {
-            for (int m2col = 0; m2col < m2.width(); m2col++)
-            {
-                threads.add(new CircleBrainThread(m1, m2, m1row, m2col));
-                threads.get(threads.size()-1).start();
-                
-                if(threads.size() == maxThreads)
-                {
-                    for(CircleBrainThread t : threads) 
-                    {
-                        try
-                        {
-                            t.t.join();
-                            if(t.m1row > row)
-                            {
-                                retMatrix.addRow(s);
-                                row++;
-                                s = t.sol+" ";
-                            }
-                            else
-                            {
-                                s+= t.sol+ " ";
-                            }
-                        }
-                        catch(Exception e) {}
-                    }
-                    threads = new ArrayList<>();
-                }
-            }
+            threads.add(new CircleBrainThread(m1, m2, retMatrix, i, maxThreads));
+            threads.get(threads.size()-1).start();
         }
+
         for(CircleBrainThread t : threads) 
-                    {
-                        try
-                        {
-                            t.t.join();
-                            if(t.m1row > row)
-                            {
-                                retMatrix.addRow(s);
-                                row++;
-                                s = t.sol+" ";
-                            }
-                            else
-                            {
-                                s+= t.sol+ " ";
-                            }
-                        }
-                        catch(Exception e) {}
-                    }
-                    retMatrix.addRow(s);
+        {
+            try
+            {
+                t.t.join();
+            }
+            catch(Exception e) {}
+        }
 
         return retMatrix;
     }

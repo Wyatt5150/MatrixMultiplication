@@ -21,33 +21,18 @@ public class BigBrain extends MatrixMultiply
             return null;
         }
 
-        Matrix retMatrix = new Matrix();
-        
-        for (int m1row = 0; m1row < m1.height(); m1row++)
+        Matrix retMatrix = new Matrix(m1.height(), m2.width());
+        for (int m1row = 0; m1row < maxThreads && m1row < m1.height(); m1row++)
         {
-            threads.add(new BigBrainThread(m1, m2, m1row));
+            threads.add(new BigBrainThread(m1, m2,retMatrix, m1row, maxThreads));
             threads.get(threads.size()-1).start();
-
-            if(m1row%maxThreads == maxThreads-1)
-            {
-                for(BigBrainThread t : threads) 
-                {
-                    try
-                    {
-                        t.t.join();
-                        retMatrix.addRow(t.newRow);
-                    }
-                    catch(Exception e) {}
-                }
-                threads = new ArrayList<>();
-            }
         }
+
         for(BigBrainThread t : threads) 
         {
             try
             {
                 t.t.join();
-                retMatrix.addRow(t.newRow);
             }
             catch(Exception e) {}
         }

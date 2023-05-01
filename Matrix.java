@@ -4,6 +4,21 @@ public class Matrix
     private ArrayList<ArrayList<Integer>> matrix;
     ArrayList<Integer> mostDigits;
 
+    public Matrix(int rows, int cols)
+    {
+        matrix = new ArrayList<ArrayList<Integer>>();
+        mostDigits = new ArrayList<Integer>();
+
+        for(int r=0; r<rows; r++)
+        {
+            matrix.add(new ArrayList<Integer>());
+            for(int c=0; c<cols; c++)
+                matrix.get(r).add(0);
+        }
+        for(int c=0; c<cols; c++)
+            mostDigits.add(1);
+    }
+
     public Matrix()
     {
         matrix = new ArrayList<ArrayList<Integer>>();
@@ -30,8 +45,9 @@ public class Matrix
         {
             int num =line.nextInt();
 
-            if(numOfDig(num) > mostDigits.get(col))
-                mostDigits.set(col,numOfDig(num));
+            int dig= numOfDig(num);
+            if(dig > mostDigits.get(col))
+                mostDigits.set(col,dig);
 
             matrix.get(height()-1).add(num);
             col++;
@@ -72,6 +88,14 @@ public class Matrix
             }
             System.out.print("|");
         }
+    }
+    public void set(int r, int c, int val)
+    {
+        matrix.get(r).set(c,val);
+
+        int dig = numOfDig(val);
+        if(dig > mostDigits.get(c))
+            mostDigits.set(c,dig);
     }
 
     private void addFirstRow(String row)

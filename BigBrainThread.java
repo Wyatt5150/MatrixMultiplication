@@ -1,16 +1,20 @@
 public class BigBrainThread implements Runnable
 {
     public Thread t;
+
     private Matrix m1;
     private Matrix m2;
+    private Matrix result;
+
     private int m1row;
-    public String newRow;
-    public BigBrainThread(Matrix m1, Matrix m2, int r)
+    private int interval;
+    public BigBrainThread(Matrix m1, Matrix m2, Matrix res, int r, int i)
     {
         this.m1 = m1;
         this.m2 = m2;
+        result = res;
         m1row = r;
-        newRow = "";
+        interval = i;
     }
 
     public void start()
@@ -21,9 +25,13 @@ public class BigBrainThread implements Runnable
 
     @Override public void run()
     {
-        for (int m2col = 0; m2col < m2.width(); m2col++)
+        while(m1row < m1.height())
         {
-            newRow += MatrixMultiply.calc(m1, m2, m1row, m2col) + " ";
+            for (int m2col = 0; m2col < m2.width(); m2col++)
+            {
+                result.set(m1row,m2col,MatrixMultiply.calc(m1, m2, m1row, m2col));
+            }
+            m1row+=interval;
         }
     }
 }
